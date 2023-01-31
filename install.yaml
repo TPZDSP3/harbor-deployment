@@ -44,7 +44,7 @@ spec:
         - name: expose.ingress.notary.annotations.cert-manager\.io/cluster-issuer
           value: letsencrypt-prod
         - name: chartmuseum.enabled
-          value: "true"
+          value: "false"
   project: harbor
   syncPolicy:
     automated:
