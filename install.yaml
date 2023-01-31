@@ -1,0 +1,51 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: harbor
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: harbor
+  namespace: argocd
+spec:
+  destination:
+    namespace: harbor
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: 'https://helm.goharbor.io'
+    chart: harbor
+    targetRevision: 1.11.0
+    helm:
+      parameters:
+        - name: externalURL
+          value: "https://core.20-90-125-146.nip.io"
+        - name: expose.ingress.hosts.core
+          value: core.20-90-125-146.nip.io
+        - name: expose.ingress.hosts.notary
+          value: notary.20-90-125-146.nip.io
+        - name: trace.jaeger.endpoint
+          value: "http://20-90-125-146.nip.io:14268/api/traces"
+        - name: trace.otel.endpoint
+          value: "20-90-125-146.nip.io:4318"
+        - name: expose.ingress.harbor.annotations.kubernetes\.io/ingress\.class
+          value: nginx
+        - name: expose.ingress.notary.annotations.kubernetes\.io/ingress\.class
+          value: nginx
+        - name: expose.tls.secret.secretName
+          value: tlsname
+        - name: expose.tls.secret.notarySecretName
+          value: notarytlsname
+        - name: expose.tls.certSource
+          value: secret
+        - name: expose.ingress.harbor.annotations.cert-manager\.io/cluster-issuer
+          value: letsencrypt-prod
+        - name: expose.ingress.notary.annotations.cert-manager\.io/cluster-issuer
+          value: letsencrypt-prod
+        - name: chartmuseum.enabled
+          value: "true"
+  project: harbor
+  syncPolicy:
+    automated:
+      selfHeal: true
