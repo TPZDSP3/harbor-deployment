@@ -8,13 +8,14 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: standard
-  provisioner: kubernetes.io/azure-file
-  parameters:
-    type: gp2
-  reclaimPolicy: Retain
-  allowVolumeExpansion: true
-  mountOptions:
-    - debugvolumeBindingMode: Immediate
+provisioner: kubernetes.io/azure-file
+parameters:
+  type: gp2
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -75,22 +76,22 @@ spec:
         #   value: standard
         - name: persistence.persistentVolumeClaim.jobservice.storageClass
           value: standard
-        - name: portal.replicas
-          value: 2
-        - name: core.replicas
-          value: 2
-        - name: jobservice.replicas
-          value: 2
-        - name: registry.replicas
-          value: 2
+        # - name: portal.replicas
+        #   value: 2
+        # - name: core.replicas
+        #   value: 2
+        # - name: jobservice.replicas
+        #   value: 2
+        # - name: registry.replicas
+        #   value: 2
         # - name: chartmuseum.replicas
         #   value: 2
-        - name: clair.replicas
-          value: 2
-        - name: notary.server.replicas
-          value: 2
-        - name: notary.signer.replicas
-          value: 2
+        # - name: clair.replicas
+        #   value: 2
+        # - name: notary.server.replicas
+        #   value: 2
+        # - name: notary.signer.replicas
+        #   value: 2
   project: harbor
   syncPolicy:
     automated:
