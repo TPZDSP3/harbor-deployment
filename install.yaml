@@ -16,7 +16,7 @@ spec:
   source:
     repoURL: 'https://github.com/goharbor/harbor-helm'
     path: .
-    targetRevision: HEAD
+    targetRevision: 1.3.16
     helm:
       parameters:
         - name: externalURL
