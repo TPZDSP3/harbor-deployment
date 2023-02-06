@@ -14,8 +14,8 @@ spec:
     namespace: harbor
     server: 'https://kubernetes.default.svc'
   source:
-    repoURL: 'https://github.com/goharbor/harbor-helm'
-    path: .
+    repoURL: 'https://helm.goharbor.io'
+    chart: harbor
     targetRevision: 1.3.16
     helm:
       parameters:
