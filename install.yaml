@@ -16,7 +16,7 @@ spec:
   source:
     repoURL: 'https://helm.goharbor.io'
     chart: harbor
-    targetRevision: 1.11.0
+    targetRevision: 1.13.16
     helm:
       parameters:
         - name: externalURL
