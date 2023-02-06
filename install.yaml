@@ -4,19 +4,6 @@ kind: Namespace
 metadata:
   name: harbor
 ---
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: standard
-provisioner: kubernetes.io/azure-file
-parameters:
-  type: gp2
-reclaimPolicy: Retain
-allowVolumeExpansion: true
-mountOptions:
-  - debug
-volumeBindingMode: Immediate
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
