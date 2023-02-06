@@ -61,20 +61,36 @@ spec:
           value: ReadWriteMany
         - name: persistence.persistentVolumeClaim.registry.size
           value: 50Gi
-        - name: persistence.persistentVolumeClaim.chartmuseum.accessMode
-          value: ReadWriteMany
-        - name: persistence.persistentVolumeClaim.chartmuseum.size
-          value: 5Gi
+        # - name: persistence.persistentVolumeClaim.chartmuseum.accessMode
+        #   value: ReadWriteMany
+        # - name: persistence.persistentVolumeClaim.chartmuseum.size
+        #   value: 5Gi
         - name: persistence.persistentVolumeClaim.jobservice.accessMode
           value: ReadWriteMany
         - name: persistence.persistentVolumeClaim.database.size
           value: 5Gi
         - name: persistence.persistentVolumeClaim.registry.storageClass
           value: standard
-        - name: persistence.persistentVolumeClaim.chartmuseum.storageClass
-          value: standard
+        # - name: persistence.persistentVolumeClaim.chartmuseum.storageClass
+        #   value: standard
         - name: persistence.persistentVolumeClaim.jobservice.storageClass
           value: standard
+        - name: portal.replicas
+          value: 2
+        - name: core.replicas
+          value: 2
+        - name: jobservice.replicas
+          value: 2
+        - name: registry.replicas
+          value: 2
+        # - name: chartmuseum.replicas
+        #   value: 2
+        - name: clair.replicas
+          value: 2
+        - name: notary.server.replicas
+          value: 2
+        - name: notary.signer.replicas
+          value: 2
   project: harbor
   syncPolicy:
     automated:
