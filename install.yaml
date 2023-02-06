@@ -45,6 +45,12 @@ spec:
           value: letsencrypt-prod
         - name: chartmuseum.enabled
           value: "false"
+        - name: persistence.persistentVolumeClaim.registry.accessMode
+          value: ReadWriteMany
+        - name: persistence.persistentVolumeClaim.chartmuseum.accessMode
+          value: ReadWriteMany
+        - name: persistence.persistentVolumeClaim.jobservice.accessMode
+          value: ReadWriteMany
   project: harbor
   syncPolicy:
     automated:
